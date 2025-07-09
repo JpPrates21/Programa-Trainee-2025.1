@@ -55,7 +55,6 @@ function podeDirigir(idade) {
     return resultado;
 }
 
-
 // 5. Estruturas de Repetição
 function imprimirNumeros() {
     // Crie um loop for que itere de 1 a 5 e imprima cada número no console.
@@ -104,7 +103,6 @@ function maiorDeIdade(idade) {
 
     return resultado;
 }
-
 
 // 9. Estruturas Condicionais e Operadores Lógicos
 // Crie uma função chamada "podeVotar" que recebe dois parâmetros: "idade" e "temTituloEleitoral". (tem título eleitoral é uma variável booleana)
@@ -208,13 +206,8 @@ function maiorTresNumeros(a, b, c) {
     return maior;
 }
 
-
-
-
 //Parabéns! Você concluiu o desafio da semana 1!
 //Para testar o seu código, rode o comando "npx jest" no terminal.
-
-
 
 //NÃO ALTERAR ESSA LINHA
 module.exports = {
