@@ -171,6 +171,8 @@ function verificarAnoBissexto(ano) {
     // Um ano é bissexto se for divisível por 4 e não for divisível por 100, ou se for divisível por 400.
     var resultado; /*seu código*/
 
+    resultado = ((ano%4==0 && ano%100!=0) || ano%400==0)
+
     return resultado;
 }
 
@@ -180,6 +182,8 @@ function verificarAnoBissexto(ano) {
 function compararStrings(str1, str2) {
     // Use o operador de comparação para verificar se as strings são iguais.
     var resultado; /*seu código*/
+
+    resultado = str1==str2
 
     return resultado;
 }
@@ -191,8 +195,20 @@ function maiorTresNumeros(a, b, c) {
     // Use operadores ternários para comparar os números e determinar o maior.
     var maior; /*seu código*/
 
+    if(a>b && a>c){
+        maior = a
+    }
+    else if(b>a && b>c){
+        maior = b
+    }
+    else{ 
+        maior = c
+    }
+
     return maior;
 }
+
+
 
 
 //Parabéns! Você concluiu o desafio da semana 1!
