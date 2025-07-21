@@ -1,0 +1,130 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+const readline = __importStar(require("readline"));
+const ControleEstoque_1 = require("./controller/ControleEstoque");
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+const estoque = new ControleEstoque_1.ControleEstoque();
+function menu() {
+    console.log('\n=== MENU ESTOQUE ===');
+    console.log('1. Listar produtos');
+    console.log('2. Adicionar produto');
+    console.log('3. Remover produto');
+    console.log('4. Ver valor total');
+    console.log('5. Ver peso total');
+    console.log('6. Calcular média de peso');
+    console.log('7. Ver quantidade total de itens');
+    console.log('8. Ver quantidade total de produtos');
+    console.log('0. Sair');
+    rl.question('Escolha uma opção: ', (opcao) => {
+        switch (opcao.trim()) {
+            case '1':
+                estoque.listar();
+                menu();
+                break;
+            case '2':
+                adicionarProduto();
+                break;
+            case '3':
+                removerProduto();
+                break;
+            case '4':
+                console.log('Valor total:', estoque.valorTotal());
+                menu();
+                break;
+            case '5':
+                console.log('Peso total:', estoque.pesoTotal());
+                menu();
+                break;
+            case '6':
+                console.log('Média de peso:', estoque.mediaPeso());
+                menu();
+                break;
+            case '7':
+                console.log('Quantidade total de itens:', estoque.quantidadeTotalItens());
+                menu();
+                break;
+            case '8':
+                console.log('Quantidade total de produtos:', estoque.quantidadeTotalProdutos());
+                menu();
+                break;
+            case '0':
+                console.log('Saindo...');
+                rl.close();
+                break;
+            default:
+                console.log('Opção inválida');
+                menu();
+                break;
+        }
+    });
+}
+function adicionarProduto() {
+    rl.question('Nome: ', (nome) => {
+        rl.question('Peso: ', (pesoStr) => {
+            rl.question('Valor: ', (valorStr) => {
+                rl.question('Quantidade: ', (quantStr) => {
+                    const peso = parseFloat(pesoStr);
+                    const valor = parseFloat(valorStr);
+                    const quantidade = parseInt(quantStr);
+                    if (nome && !isNaN(peso) && !isNaN(valor) && !isNaN(quantidade)) {
+                        estoque.adicionar({ nome, peso, valor, quantidade });
+                        console.log('Produto adicionado com sucesso!');
+                    }
+                    else {
+                        console.log('Dados inválidos, tente novamente.');
+                    }
+                    menu();
+                });
+            });
+        });
+    });
+}
+function removerProduto() {
+    rl.question('Nome do produto para remover: ', (nome) => {
+        const sucesso = estoque.remover(nome);
+        if (sucesso) {
+            console.log('Produto removido.');
+        }
+        else {
+            console.log('Produto não encontrado.');
+        }
+        menu();
+    });
+}
+menu();

@@ -1,1 +1,0 @@
-// Funçoes principais do programa
