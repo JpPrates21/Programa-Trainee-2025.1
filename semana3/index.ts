@@ -20,7 +20,7 @@ function menu() {
   console.log('8. Ver quantidade total de produtos');
   console.log('0. Sair');
 
-  rl.question('Escolha uma opção: ', (opcao) => {
+  rl.question('Escolha uma opção: ', (opcao: string) => {
     switch (opcao.trim()) {
       case '1':
         estoque.listar();
@@ -65,10 +65,10 @@ function menu() {
 }
 
 function adicionarProduto() {
-  rl.question('Nome: ', (nome) => {
-    rl.question('Peso: ', (pesoStr) => {
-      rl.question('Valor: ', (valorStr) => {
-        rl.question('Quantidade: ', (quantStr) => {
+  rl.question('Nome: ', (nome: string) => {
+    rl.question('Peso: ', (pesoStr: string ) => {
+      rl.question('Valor: ', (valorStr: string) => {
+        rl.question('Quantidade: ', (quantStr: string) => {
           const peso = parseFloat(pesoStr);
           const valor = parseFloat(valorStr);
           const quantidade = parseInt(quantStr);
@@ -87,7 +87,7 @@ function adicionarProduto() {
 }
 
 function removerProduto() {
-  rl.question('Nome do produto para remover: ', (nome) => {
+  rl.question('Nome do produto para remover: ', (nome: string) => {
     const sucesso = estoque.remover(nome);
     if (sucesso) {
       console.log('Produto removido.');

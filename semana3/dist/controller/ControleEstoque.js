@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ControleEstoque = void 0;
 const ServiceEstoque_1 = require("../service/ServiceEstoque");
 class ControleEstoque {
+    service;
     constructor() {
         this.service = new ServiceEstoque_1.ServiceEstoque();
     }

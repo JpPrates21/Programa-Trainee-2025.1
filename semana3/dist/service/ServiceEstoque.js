@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServiceEstoque = void 0;
 const readCSV_1 = require("../model/readCSV");
 class ServiceEstoque {
+    produtos;
     constructor() {
         this.produtos = readCSV_1.CSVModel.lerCSV();
     }
