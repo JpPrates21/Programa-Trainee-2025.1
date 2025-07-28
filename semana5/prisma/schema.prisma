@@ -1,0 +1,24 @@
+// prisma/schema.prisma
+
+// definindo qual dbms será utilizado (qual tipo de banco, mysql, sqlite...)
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// definindo o que vai ser criado quando o comando prisma generate é executado
+generator client {
+  provider = "prisma-client-js"
+}
+
+// aqui é definida cada entidade e seus atributos, como tipo e "caracteristicas"
+model Usuario {
+  id    Int     @id @default(autoincrement())
+  nome  String? 
+  email String @unique
+}
+
+model Chefe {
+	id Int @id @default(autoincrement())
+	gerenteGeral Boolean @default(false)
+}
